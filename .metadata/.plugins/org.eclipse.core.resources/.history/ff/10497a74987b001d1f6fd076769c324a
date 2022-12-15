@@ -1,0 +1,9 @@
+package com.deloitte.device.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.device.entity.DeviceTable;
+
+public interface DeviceDAO extends JpaRepository<DeviceTable, Integer>{
+
+}

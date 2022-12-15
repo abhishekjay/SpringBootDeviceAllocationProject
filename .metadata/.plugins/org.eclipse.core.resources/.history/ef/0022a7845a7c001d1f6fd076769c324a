@@ -1,0 +1,9 @@
+package com.deloitte.company.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.company.entity.CompanyTable;
+
+public interface CompanyDAO extends JpaRepository<CompanyTable, Integer>{
+
+}

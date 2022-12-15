@@ -1,0 +1,5 @@
+package com.deloitte.company.repository;
+
+public interface CompanyDAO {
+
+}

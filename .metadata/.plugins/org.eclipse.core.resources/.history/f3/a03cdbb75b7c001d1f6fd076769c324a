@@ -1,0 +1,5 @@
+package com.deloitte.company.entity;
+
+public class CompanyTable {
+
+}

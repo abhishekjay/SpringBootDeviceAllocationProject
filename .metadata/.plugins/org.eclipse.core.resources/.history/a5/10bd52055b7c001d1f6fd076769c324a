@@ -1,0 +1,5 @@
+package com.deloitte.company.service;
+
+public class CompanyServiceImpl {
+
+}

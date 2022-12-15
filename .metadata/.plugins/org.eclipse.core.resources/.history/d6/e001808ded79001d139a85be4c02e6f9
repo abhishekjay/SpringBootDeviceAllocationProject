@@ -1,0 +1,11 @@
+server.port= 8082
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/db
+spring.datasource.username=root
+spring.datasource.password=njanGmunch@1128
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql=true
+
+management.security.enabled=false
+management.endpoints.web.exposure.include=*
+

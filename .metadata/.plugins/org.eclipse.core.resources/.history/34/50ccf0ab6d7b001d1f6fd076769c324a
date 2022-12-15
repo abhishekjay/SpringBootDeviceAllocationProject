@@ -1,0 +1,32 @@
+package com.deloitte;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.deloitte.model.Tutorial;
+import com.deloitte.repository.TutorialRepository;
+
+@SpringBootApplication
+public class SpringJpaPersistanceApplication implements CommandLineRunner{
+	
+	@Autowired
+	TutorialRepository repository;
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringJpaPersistanceApplication.class, args);
+	}
+	
+	@Override
+	public void run(String... args) throws Exception {
+		repository.save(new Tutorial("Spring Data", "Tut1Description", false));
+		repository.save(new Tutorial("Java Spring", "Tut#2 Description", false));
+        repository.save(new Tutorial("Hibernate", "Tut#3 Description", false));
+        repository.save(new Tutorial("Spring Boot", "Tut#4 Description", false));
+        repository.save(new Tutorial("Spring Data JPA", "Tut#5 Description", false));
+        repository.save(new Tutorial("JPA EntityManager", "Tut#6 Description", false));
+        repository.save(new Tutorial("Spring Security", "Tut#7 Description", false));
+	}
+
+}

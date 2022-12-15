@@ -1,0 +1,9 @@
+package com.deloitte.jobs.controller;
+
+import com.deloitte.jobs.dao.JobRepository;
+
+public class JobController {
+	
+	private JobRepository jobRepository;
+
+}

@@ -1,0 +1,11 @@
+package com.deloitte.jobs.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface JobRepository extends JpaRepository<Jobs, Integer>{
+	
+	List<Jobs> findByDeviceId(Integer deviceId);
+
+}

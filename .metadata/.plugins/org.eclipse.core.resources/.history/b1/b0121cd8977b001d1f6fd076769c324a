@@ -1,0 +1,5 @@
+package com.deloitte.device.dao;
+
+public interface DeviceDAO {
+
+}

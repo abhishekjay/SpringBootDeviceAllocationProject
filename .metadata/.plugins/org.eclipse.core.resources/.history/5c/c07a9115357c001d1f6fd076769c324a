@@ -1,0 +1,5 @@
+package com.deloitte.jobs.entity;
+
+public class Jobs {
+
+}

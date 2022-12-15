@@ -1,0 +1,62 @@
+package com.deloitte.customer.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.deloitte.customer.entity.CustomerTable;
+import com.deloitte.customer.model.FailureResponse;
+import com.deloitte.customer.model.Order;
+import com.deloitte.customer.model.Response;
+import com.deloitte.customer.service.CustomerService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+	
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired
+	private CustomerService customerService;
+	
+	@GetMapping("/get/{id}")
+	@HystrixCommand(fallbackMethod = "orderFailureFallback")
+	public ResponseEntity<?> getCustomer(@PathVariable("id") Integer id) {
+		
+		CustomerTable customer = customerService.getCustomer(id);
+		List<Order> ordersList = restTemplate.getForObject("http://localhost:8081/orders/get/"+id,List.class);
+		List<Order> ordersList1 = restTemplate.getForObject("http://localhost:8081/orders/get/"+id,List.class);
+		Response response = new Response(customer,ordersList,ordersList1);
+		
+		return new ResponseEntity<Response>(response,HttpStatus.OK);
+	}
+	
+        public ResponseEntity<?> orderFailureFallback(@PathVariable("id") Integer id) {
+		
+		CustomerTable customer = customerService.getCustomer(id);
+
+		FailureResponse response = new FailureResponse(customer,"Currently Order service is down");
+		return new ResponseEntity<FailureResponse>(response,HttpStatus.OK);
+	}
+    
+	@GetMapping("/getcustomer")
+	public ResponseEntity<List<CustomerTable>> getCustomers(){
+		
+		List<CustomerTable> customerList =  customerService.getCustomers();
+		return new ResponseEntity<List<CustomerTable>>(customerList,HttpStatus.OK);
+		
+	}
+	
+	
+}

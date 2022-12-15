@@ -1,0 +1,33 @@
+package com.deloitte.customer.model;
+
+import com.deloitte.customer.entity.Customer;
+
+public class FailureResponse {
+	
+	private Customer customer;
+	private String message;
+	public FailureResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public FailureResponse(Customer customer, String message) {
+		super();
+		this.customer = customer;
+		this.message = message;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
+
+}

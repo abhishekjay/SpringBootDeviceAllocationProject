@@ -1,0 +1,21 @@
+package com.deloitte.jobs.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.deloitte.jobs.dao.JobRepository;
+import com.deloitte.jobs.entity.Jobs;
+
+public class JobController {
+	
+	private JobRepository jobRepository;
+	
+	public ResponseEntity<List<Jobs>> getJobs() {
+		List<Jobs> jobsList = jobRepository.findAll();
+		
+		return new ResponseEntity<List<Jobs>>(jobsList, HttpStatus.OK);
+	}
+
+}
